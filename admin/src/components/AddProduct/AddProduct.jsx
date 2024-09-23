@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const AddProduct = () => {
 	const [image, setImage] = useState(false);
+	const url = "http://localhost:4000";
 
 	const [productDetails, setProductDetails] = useState({
 		name: "",
@@ -33,7 +34,7 @@ const AddProduct = () => {
 		let formData = new FormData();
 		formData.append("product", image);
 
-		await fetch("http://localhost:4000/upload", {
+		await fetch(`${url}/upload`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -49,7 +50,7 @@ const AddProduct = () => {
 			product.image = responseData.image_url;
 			// console.log(product);
 
-			await fetch("http://localhost:4000/addproduct", {
+			await fetch(`${url}/addproduct`, {
 				method: "POST",
 				headers: {
 					Accept: "application/json",

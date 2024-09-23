@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 const NewCollections = () => {
 
 	const [newCollection, setNewCollection] = useState([]);
+const url = "http://localhost:4000";
+
 
 	useEffect(() => {
-		fetch("http://localhost:4000/newcollections")
+		fetch(`${url}/newcollections`)
 		.then((res) => res.json())
 		.then((data) => {
 			setNewCollection(data);

@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 
 const Popular = () => {
 	const [popularProducts, setPopularProducts] = useState([]);
+const url = "http://localhost:4000";
+
 
 	useEffect(() => {
-		fetch("http://localhost:4000/popularinwomen")
+		fetch(`${url}/popularinwomen`)
 			.then((res) => res.json())
 			.then((data) => {
 				setPopularProducts(data);

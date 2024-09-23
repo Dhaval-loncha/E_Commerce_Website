@@ -3,6 +3,7 @@ import "./CSS/LoginSignup.css";
 
 const LoginSignup = () => {
 	const [state, setState] = useState("Login");
+	const url = "http://localhost:4000";
 
 	const [formData, setFormData] = useState({
 		username: "",
@@ -21,7 +22,7 @@ const LoginSignup = () => {
 		console.log("Login func executed", formData);
 		let responseData;
 		try {
-			const response = await fetch("http://localhost:4000/login", {
+			const response = await fetch(`${url}/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -47,7 +48,7 @@ const LoginSignup = () => {
 		console.log("signup func executed", formData);
 		let responseData;
 		try {
-			const response = await fetch("http://localhost:4000/signup", {
+			const response = await fetch(`${url}/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
