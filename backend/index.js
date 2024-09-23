@@ -14,6 +14,8 @@ app.use(express.json());
 
 const corsOptions = {
 	origin: "https://e-commerce-website-frontend-e1xa.onrender.com",
+	methods: "GET,POST,PUT,DELETE",
+	credentials: true,
   optionsSuccessStatus: 200
 };
 
