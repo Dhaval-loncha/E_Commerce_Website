@@ -11,7 +11,13 @@ const path = require("path");
 const cors = require("cors");
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+	origin: "https://e-commerce-website-frontend-e1xa.onrender.com",
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // Database connection with MongoDB Atlas
 mongoose
