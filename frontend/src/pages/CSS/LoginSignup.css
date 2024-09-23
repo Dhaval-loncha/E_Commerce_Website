@@ -1,0 +1,144 @@
+.login-signup {
+	width: 100%;
+	/* height: 100vh; */
+	background: #fce3fe;
+	padding: 100px 0;
+}
+
+.login-signup-container {
+	width: 40%;
+	height: 70vh;
+	margin: auto;
+	background: #fff;
+	padding: 20px 40px;
+}
+
+.login-signup-container h1 {
+	margin: 20px 0px;
+}
+
+.login-signup-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin-top: 30px;
+}
+.login-signup-fields input {
+  padding: 20px;
+	padding-left: 10px;
+	border: 1px solid #c9c9c9;
+	height: 60px;
+	width: 100%;
+	outline: none;
+	font-size: 16px;
+}
+
+.login-signup-container button {
+  width: 100%;
+  height: 60px;
+  color: white;
+  background: #ff4141;
+  margin: 20px 0;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login {
+  color: #5c5c5c;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.login span {
+  color: #ff4141;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-signup-agree {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  gap: 20px;
+  color: #5c5c5c;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 1280px) {
+  .login-signup {
+    padding: 50px 0;
+  }
+  .login-signup-container{
+    margin: 150px auto;
+    width: auto;
+    max-width: 500px;
+    max-height: 500px;
+  }
+  .login-signup-container h1 {
+    font-size: 30px;
+  }
+  .login-signup-fields {
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .login-signup-fields input {
+    height: 65px;
+  }
+  .login-signup-container button {
+    width: 100%;  
+  }
+  .login{
+    font-size: 16px;
+  }
+  .login-signup-agree{
+    font-size: 14px;
+    gap: 10px;
+  }
+}
+@media (max-width: 1024px) {
+  .login-signup {
+    padding: 30px 0;
+  }
+}
+@media (max-width: 800px) {
+  .login-signup {
+    padding: 20px 0;
+  }
+  .login-signup-container{
+    margin: 100px auto;
+    padding: 20px 30px;
+  }
+  .login-signup-container h1{
+    font-size: 24px;
+    margin: 0;
+  }
+  .login-signup-fields{
+    margin-top: 20px;
+    gap: 20px;
+  }
+  .login-signup-fields input{
+    height: 50px;
+  }
+  .login-signup-container button{
+    height: 50px;
+    font-size: 16px;
+  }
+  .login-signup-agree{
+    font-size: 12px;
+  }
+}
+@media (max-width: 500px) {
+  .login-signup{
+    margin: 55px 0;
+  }
+  .login-signup-container {
+    margin: 20px;
+    padding: 20px;
+    max-height: 440px;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+}
