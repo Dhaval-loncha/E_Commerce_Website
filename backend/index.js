@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const port = process.env.PORT || 4000;
 
@@ -9,6 +9,8 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 app.use(express.json());
 
@@ -16,7 +18,7 @@ const corsOptions = {
 	origin: "https://e-commerce-website-frontend-e1xa.onrender.com",
 	methods: "GET,POST,PUT,DELETE",
 	credentials: true,
-  optionsSuccessStatus: 200
+	optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -27,33 +29,35 @@ mongoose
 	.then(() => console.log("Connected to MongoDB"))
 	.catch((err) => console.error("Error connecting to MongoDB:", err));
 
+// Cloudinary Configuration
+cloudinary.config({
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.API_KEY,
+	api_secret: process.env.API_SECRET,
+});
+
+// Multer Configuration for Cloudinary
+const storage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: "product_images", // Folder name in Cloudinary
+		allowed_formats: ["jpeg", "png", "jpg"], // Allowed image formats
+	},
+});
+
+const upload = multer({ storage: storage });
+
 // API creation
 
 app.get("/", (req, res) => {
 	res.send("Express app is running");
 });
 
-// image storage engine
-
-const storage = multer.diskStorage({
-	destination: "./upload/images",
-	filename: (req, file, cb) => {
-		return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-	},
-});
-
-const upload = multer({
-	storage: storage,
-});
-
-// upload endpoint
-
-app.use("/images", express.static("upload/images"));
-
+// Endpoint for image upload (Cloudinary)
 app.post("/upload", upload.single("product"), (req, res) => {
 	res.json({
 		success: true,
-		image_url: `http://localhost:${port}/images/${req.file.filename}`,
+		image_url: req.file.path, // Cloudinary URL
 	});
 });
 
@@ -192,7 +196,7 @@ app.post("/signup", async (req, res) => {
 		},
 	};
 
-	const token = jwt.sign(data,  process.env.JWT_SECRET);
+	const token = jwt.sign(data, process.env.JWT_SECRET);
 
 	res.json({ success: true, token });
 });
@@ -269,8 +273,7 @@ app.post("/addtocart", fetchUser, async (req, res) => {
 app.post("/removefromcart", fetchUser, async (req, res) => {
 	console.log("removed", req.body.itemId);
 	let userData = await User.findOne({ _id: req.user.id });
-	if (userData.cartData[req.body.itemId] > 0) 
-	userData.cartData[req.body.itemId] -= 1;
+	if (userData.cartData[req.body.itemId] > 0) userData.cartData[req.body.itemId] -= 1;
 	await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
 	res.send("Removed");
 });
@@ -281,8 +284,8 @@ app.post("/getcart", fetchUser, async (req, res) => {
 	console.log("Get Cart");
 
 	let userData = await User.findOne({ _id: req.user.id });
-	res.json(userData.cartData);	
-})
+	res.json(userData.cartData);
+});
 
 app.listen(port, (err) => {
 	if (err) {
