@@ -9,11 +9,7 @@ const path = require("path");
 const cors = require("cors");
 
 app.use(express.json());
-app.use(cors({
-	origin: ["https://shopper-delta-lyart.vercel.app/"],
-	methods: ["GET", "POST"],
-	credentials: true,
-}));
+app.use(cors());
 
 // Database connection with MongoDB Atlas
 mongoose
