@@ -15,7 +15,10 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 app.use(express.json());
 
 const corsOptions = {
-	origin: "https://e-commerce-website-frontend-e1xa.onrender.com",
+	origin: [
+		"https://e-commerce-website-frontend-e1xa.onrender.com",
+		"https://e-commerce-website-admin-95zz.onrender.com",
+	],
 	methods: "GET,POST,PUT,DELETE",
 	credentials: true,
 	optionsSuccessStatus: 200,
