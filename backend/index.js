@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const port = process.env.PORT || 4000;
 
 const express = require("express");
@@ -13,7 +15,7 @@ app.use(cors());
 
 // Database connection with MongoDB Atlas
 mongoose
-	.connect("mongodb+srv://dhaval:Dhaval%401910@cluster0.pfasg.mongodb.net/e-commerce")
+	.connect(process.env.MONGO_URI)
 	.then(() => console.log("Connected to MongoDB"))
 	.catch((err) => console.error("Error connecting to MongoDB:", err));
 
@@ -182,7 +184,7 @@ app.post("/signup", async (req, res) => {
 		},
 	};
 
-	const token = jwt.sign(data, "secret_ecom");
+	const token = jwt.sign(data,  process.env.JWT_SECRET);
 
 	res.json({ success: true, token });
 });
@@ -199,7 +201,7 @@ app.post("/login", async (req, res) => {
 					id: user.id,
 				},
 			};
-			const token = jwt.sign(data, "secret_ecom");
+			const token = jwt.sign(data, process.env.JWT_SECRET);
 			res.json({ success: true, token });
 		} else {
 			res.json({ success: false, error: "Invalid Password" });
@@ -235,7 +237,7 @@ const fetchUser = async (req, res, next) => {
 		res.status(401).send({ error: "Please authenticate using valid token" });
 	} else {
 		try {
-			const data = jwt.verify(token, "secret_ecom");
+			const data = jwt.verify(token, process.env.JWT_SECRET);
 			req.user = data.user;
 			next();
 		} catch (error) {
