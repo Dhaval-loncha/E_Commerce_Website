@@ -4,7 +4,8 @@ import { useState } from "react";
 
 const AddProduct = () => {
 	const [image, setImage] = useState(false);
-	const url = "http://localhost:4000";
+	// const url = "http://localhost:4000";
+	const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
 	const [productDetails, setProductDetails] = useState({
 		name: "",

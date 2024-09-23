@@ -4,8 +4,8 @@ import crossIcon from "../../assets/cross_icon.png";
 
 const ListProduct = () => {
 	const [allProducts, setAllProducts] = useState([]);
-const url = "http://localhost:4000";
-
+	// const url = "http://localhost:4000";
+	const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
 	const fetchInfo = async () => {
 		try {
@@ -32,7 +32,7 @@ const url = "http://localhost:4000";
 			},
 			body: JSON.stringify({ id: id }),
 		});
-    await fetchInfo();
+		await fetchInfo();
 	};
 
 	return (
@@ -57,7 +57,12 @@ const url = "http://localhost:4000";
 								<p className="ma">${product.old_price}</p>
 								<p className="ma">${product.new_price}</p>
 								<p className="ma">{product.category}</p>
-								<img src={crossIcon} alt="" className="list-product-remove ma" onClick={() => removeProduct(product.id)}/>
+								<img
+									src={crossIcon}
+									alt=""
+									className="list-product-remove ma"
+									onClick={() => removeProduct(product.id)}
+								/>
 							</div>
 							<hr />
 						</React.Fragment>

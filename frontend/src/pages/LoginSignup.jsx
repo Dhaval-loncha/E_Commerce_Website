@@ -3,7 +3,8 @@ import "./CSS/LoginSignup.css";
 
 const LoginSignup = () => {
 	const [state, setState] = useState("Login");
-	const url = "http://localhost:4000";
+	// const url = "http://localhost:4000";
+	const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
 	const [formData, setFormData] = useState({
 		username: "",

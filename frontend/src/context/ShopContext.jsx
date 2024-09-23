@@ -2,7 +2,9 @@ import { createContext, useEffect, useState } from "react";
 
 export const ShopContext = createContext(null);
 
-const url = "http://localhost:4000";
+// const url = "http://localhost:4000";
+
+const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
 const getDefaultCart = () => {
 	let cart = {};

@@ -3,18 +3,17 @@ import Item from "../Item/Item.jsx";
 import { useEffect, useState } from "react";
 
 const NewCollections = () => {
-
 	const [newCollection, setNewCollection] = useState([]);
-const url = "http://localhost:4000";
-
+	// const url = "http://localhost:4000";
+	const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
 	useEffect(() => {
 		fetch(`${url}/newcollections`)
-		.then((res) => res.json())
-		.then((data) => {
-			setNewCollection(data);
-		})
-	}, [])
+			.then((res) => res.json())
+			.then((data) => {
+				setNewCollection(data);
+			});
+	}, []);
 
 	return (
 		<div className="new-collections">
