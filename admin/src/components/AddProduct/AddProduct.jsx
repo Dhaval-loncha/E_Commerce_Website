@@ -46,6 +46,7 @@ const AddProduct = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
+				console.log(data)
 				responseData = data;
 			});
 
@@ -62,6 +63,7 @@ const AddProduct = () => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
+					console.log(data);
 					data.success ? alert("Product added") : alert("Failed to add product");
 				});
 		} else {
