@@ -58,11 +58,19 @@ app.get("/", (req, res) => {
 
 // Endpoint for image upload (Cloudinary)
 app.post("/upload", upload.single("product"), (req, res) => {
-	res.json({
-		success: true,
-		image_url: req.file.path, // Cloudinary URL
-	});
+  if (!req.file) {
+    return res.status(400).json({
+      success: false,
+      message: "No file uploaded",
+    });
+  }
+
+  res.json({
+    success: true,
+    image_url: req.file.path, // Cloudinary URL
+  });
 });
+
 
 // Schema for creating products
 

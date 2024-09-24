@@ -3,7 +3,7 @@ import uploadArea from "../../assets/upload_area.svg";
 import { useState } from "react";
 
 const AddProduct = () => {
-	const [image, setImage] = useState(false);
+	const [image, setImage] = useState(null);
 	// const url = "http://localhost:4000";
 	const url = "https://e-commerce-website-backend-x6ht.onrender.com";
 
@@ -63,6 +63,8 @@ const AddProduct = () => {
 				.then((data) => {
 					data.success ? alert("Product added") : alert("Failed");
 				});
+		} else {
+			alert("Failed");
 		}
 	};
 
