@@ -37,7 +37,7 @@ const AddProduct = () => {
 		formData.append("upload_preset", "e-commerce-store");
 		formData.append("cloud_name", "dansxqfuh");
 
-		await fetch("https://api.cloudinary.com/v1_1/dansxqfuh/image/upload/", {
+		await fetch("https://api.cloudinary.com/v1_1/dansxqfuh/image/upload", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
