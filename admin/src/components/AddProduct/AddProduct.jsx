@@ -29,11 +29,16 @@ const AddProduct = () => {
 	const addProduct = async () => {
 		// console.log(productDetails);
 
+		if (!image) {
+			alert("Please select an image");
+			return;
+		}
+
 		let responseData;
 		let product = productDetails;
 
 		let formData = new FormData();
-		formData.append("product", image);
+		formData.append("file", image);
 		formData.append("upload_preset", "e-commerce-store");
 		formData.append("cloud_name", "dansxqfuh");
 
@@ -46,7 +51,7 @@ const AddProduct = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data)
+				console.log(data);
 				responseData = data;
 			});
 
