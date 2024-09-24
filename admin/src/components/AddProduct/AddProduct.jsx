@@ -37,7 +37,7 @@ const AddProduct = () => {
 		formData.append("upload_preset", "e-commerce-store");
 		formData.append("cloud_name", "dansxqfuh");
 
-		await fetch("https://api.cloudinary.com/v1_1/dansxqfuh/upload", {
+		await fetch("https://api.cloudinary.com/v1_1/dansxqfuh/image/upload/", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -49,9 +49,8 @@ const AddProduct = () => {
 				responseData = data;
 			});
 
-		if (responseData.success) {
-			product.image = responseData.image_url;
-			// console.log(product);
+		if (responseData && responseData.secure_url) {
+			productDetails.image = responseData.secure_url;
 
 			await fetch(`${url}/addproduct`, {
 				method: "POST",
@@ -59,14 +58,14 @@ const AddProduct = () => {
 					Accept: "application/json",
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(product),
+				body: JSON.stringify(productDetails),
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					data.success ? alert("Product added") : alert("Failed");
+					data.success ? alert("Product added") : alert("Failed to add product");
 				});
 		} else {
-			alert("Failed");
+			alert("Image upload failed");
 		}
 	};
 
