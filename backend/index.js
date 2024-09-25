@@ -50,6 +50,8 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
 // API creation
 
 app.get("/", (req, res) => {
@@ -297,6 +299,10 @@ app.post("/getcart", fetchUser, async (req, res) => {
 	let userData = await User.findOne({ _id: req.user.id });
 	res.json(userData.cartData);
 });
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
+})
 
 app.listen(port, (err) => {
 	if (err) {
