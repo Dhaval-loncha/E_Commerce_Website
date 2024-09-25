@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Shop from "./pages/Shop";
 import LoginSignup from "./pages/LoginSignup";
 import ShopCategories from "./pages/ShopCategories";
@@ -26,6 +26,7 @@ function App() {
 					</Route>
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/login" element={<LoginSignup />} />
+					<Route path="*" element={<Navigate to="/" replace />} /> 
 				</Routes>
 				<Footer />
 			</BrowserRouter>
