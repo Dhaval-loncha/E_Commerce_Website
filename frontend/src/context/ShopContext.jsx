@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext(null);
 
@@ -17,6 +18,7 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
 	const [allProducts, setAllProducts] = useState([]);
 	const [cartItems, setCartItems] = useState(getDefaultCart());
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(`${url}/allproducts`)
@@ -41,23 +43,26 @@ const ShopContextProvider = (props) => {
 	}, []);
 
 	const addToCart = (itemId) => {
-		setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] ? prev[itemId] + 1 : 1 }));
-		if (localStorage.getItem("auth-token")) {
-			fetch(`${url}/addtocart`, {
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"auth-token": `${localStorage.getItem("auth-token")}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					itemId: itemId,
-				}),
-			})
-				.then((res) => res.json())
-				.then((data) => console.log(data))
-				.catch((error) => console.error("Error adding to cart:", error));
+		if (!localStorage.getItem("auth-token")) {
+			navigate("/login");
 		}
+
+		setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] ? prev[itemId] + 1 : 1 }));
+
+		fetch(`${url}/addtocart`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"auth-token": `${localStorage.getItem("auth-token")}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				itemId: itemId,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error("Error adding to cart:", error));
 	};
 
 	const removeFromCart = (itemId) => {
