@@ -22,15 +22,14 @@ This repository contains the frontend of the application. The backend and admin 
 ## 💻 Technologies Used:
 - **Frontend**: 
   - **React.js** for the user interface.
-  - **Redux** for state management (optional, if used).
-  - **Axios** for making HTTP requests.
+  - **Redux** for state management.
   
 - **Backend**: 
   - **Node.js** with **Express.js** for the server.
   - **MongoDB** for the database, with **Mongoose** as the ORM.
   - **JWT** for user authentication.
   
-- **Admin Panel**: A dashboard (not included in this repo) built to manage products, users, and orders.
+- **Admin Panel**: A dashboard  built to manage products, users, and orders.
 
 ---
 
@@ -67,10 +66,10 @@ To run this project locally, you will need to set up the **Frontend**, **Backend
 
 4. Run the frontend:
     ```bash
-    npm start
+    npm run dev
     ```
 
-   This will start the app on `http://localhost:3000`.
+   This will start the app on `http://localhost:5173`.
 
 ### **Backend Installation**:
 
@@ -117,10 +116,10 @@ To run this project locally, you will need to set up the **Frontend**, **Backend
 
 4. Run the admin panel:
     ```bash
-    npm start
+    npm run dev
     ```
 
-   This will start the admin panel on `http://localhost:4000` (or the port you configured).
+   This will start the admin panel on `http://localhost:5174`.
 
 ---
 
